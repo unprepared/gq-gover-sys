@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+    datasource:
+        name: mysql
+        url: jdbc:mysql://localhost:3306/gq_gover_db?characterEncoding=utf-8
+        username: kingeid
+        password: 123456
+
+#自定义配置
+resources:
+    #交警所需路径
+    valitePath: D:/nginx-1.13.6/static/
+    #文档生成路径
+    #path: C:\\Users\\Administrator\\Desktop\\nginx-1.13.6\\GqGoverSys\\
+    path: D:\work soft\idea\idea-workspace\gq-gover-sys-word\
+    #模板文档存放的地址
+    templatePath: D:\work soft\idea\idea-workspace\gq-gover-sys-word\template\
+    eIDON: false

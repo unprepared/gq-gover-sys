@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hc.gqgs.mybatis.mapper.business.SelectDataMapper">
+	<resultMap id="CoupleAwartPojo" type="com.hc.gqgs.mybatis.po.business.CoupleAwartPojo">
+		<result column="time" jdbcType="TIMESTAMP" property="time" />
+		<result column="c_code" jdbcType="VARCHAR" property="cCode" />
+		<result column="path" jdbcType="VARCHAR" property="path" />
+		<result column="hk_photo_path" jdbcType="VARCHAR" property="hkPhotoPath" />
+		<result column="idCard_path" jdbcType="VARCHAR" property="idCardPath" />
+		<result column="mc_picture3" jdbcType="VARCHAR" property="mcPicture" />
+		<result column="state" jdbcType="INTEGER" property="state" />
+		<result column="data" jdbcType="VARCHAR" property="data" />
+		<result column="info_path" jdbcType="VARCHAR" property="infoPath" />
+		<result column="picture_path" jdbcType="VARCHAR" property="picturePath" />
+	</resultMap>
+	<select id="selectData" resultMap="CoupleAwartPojo">
+		select
+		tid,c_code,path,hk_photo_path,idCard_path,time,mc_picture3,state,info_path,data,picture_path
+		from couple_awart
+		<where>
+			<if test="policeStationName != null">
+				and couple_awart.police_station =
+				#{policeStationName,jdbcType=STRING}
+			</if>
+			<if test="state != null">
+				and couple_awart.state = #{state,jdbcType=INTEGER}
+			</if>
+			<if test="(start != null ) and (end != null )">
+				and couple_awart.time between #{start,jdbcType=DATE} and
+				#{end,jdbcType=DATE}
+			</if>
+		</where>
+		order by tid DESC
+	</select>
+</mapper>

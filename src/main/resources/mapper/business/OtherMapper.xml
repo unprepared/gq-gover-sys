@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hc.gqgs.mybatis.mapper.business.OtherMapper">
+  <resultMap id="BaseResultMap" type="com.hc.gqgs.mybatis.po.RadioQuestion">
+    <id column="question_id" jdbcType="INTEGER" property="questionId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="options" jdbcType="VARCHAR" property="options" />
+      <result column="right_option_id" jdbcType="VARCHAR" property="rightOptionId"/>
+  </resultMap>
+  <select id="selRand" resultMap="BaseResultMap">
+  	select * from radio_question order by rand() limit 5
+  </select>
+  <select id="selOne" resultMap="BaseResultMap">
+    select * from radio_question where question_id not in
+     <foreach collection="array" item="questionId" index="index" open="(" close=")" separator=",">
+        #{questionId}
+     </foreach>
+    order by rand() limit 1
+  </select>
+</mapper>

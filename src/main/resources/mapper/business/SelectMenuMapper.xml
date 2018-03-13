@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hc.gqgs.mybatis.mapper.business.SelectMenuMapper">
+	<resultMap id="LoginMenu" type="com.hc.gqgs.mybatis.po.business.LoginMenu">
+		<result column="role_code" jdbcType="VARCHAR" property="roleCode" />
+		<result column="name" jdbcType="VARCHAR" property="menuName" />
+		<result column="operation" jdbcType="VARCHAR" property="operation" />
+		<result column="permission_url" jdbcType="VARCHAR" property="permissionUrl" />
+	</resultMap>
+	
+	<select id="selectMenu" resultMap="LoginMenu">
+		select t_resource.name,t_resource.operation,t_resource.permission_url
+		from t_role_resource,t_resource
+		where
+		t_role_resource.resource_code = t_resource.resource_code
+		<if test="role_code != null">
+			and t_role_resource.role_code = #{role_code,jdbcType=VARCHAR}
+		</if>
+	</select>
+	
+</mapper>

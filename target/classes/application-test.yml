@@ -1,0 +1,22 @@
+server:
+  port: 9000
+
+spring:
+    datasource:
+        name: mysql
+        url: jdbc:mysql://localhost:3306/gq_gover_db?characterEncoding=utf-8
+        username: kingeid
+        password: 123456
+        
+#自定义配置
+resources:
+    logdir: logs/
+    midpHost: 1.1.1.1
+    #交警所需路径
+    valitePath: D:/kingeidServer/nginx-1.13.6/GqGoverSys/Traffic/
+    #夫妻投靠与二次签注所需路径
+    path : D:/kingeidServer/nginx-1.13.6/GqGoverSys/
+    #模板文档存放的地址
+    templatePath: D:/kingeidServer/nginx-1.13.6/GqGoverSys/template/
+    #是否开始eID认证
+    eIDON: false
